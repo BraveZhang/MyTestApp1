@@ -1,3 +1,4 @@
+using MyTestApp1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,16 @@ namespace MyTestApp1
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            using (EfDbContext efDbContext = new EfDbContext())
+            {
+                efDbContext.Blogs.Add(new Blog
+                {
+                    Name = "zy",
+                    Url = "nanjing"
+                });
+                efDbContext.SaveChanges();
+            }
         }
     }
 }
